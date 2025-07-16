@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Info | DRS AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --bg-dark: #121212;
+            --bg-darker: #0a0a0a;
+            --bg-container: #1e1e1e;
+            --accent-red: #ff4c4c;
+            --accent-red-dark: #e03c3c;
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --border-radius: 16px;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            --card-bg: #252525;
+        }
+
+        body {
+            background: var(--bg-darker);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 76, 76, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 76, 76, 0.05) 0%, transparent 20%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .logo-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--bg-darker);
+            border: 3px solid var(--accent-red);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .logo-container::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--accent-red);
+            opacity: 0.1;
+            z-index: -1;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .logo {
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-red), #ff1e1e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin: 20px 0 10px;
+            background: linear-gradient(to right, var(--text-primary), var(--accent-red));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .owner-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .owner-photo {
+            flex: 0 0 300px;
+            background: var(--bg-darker);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .owner-photo::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 0%,
+                transparent 45%,
+                var(--accent-red) 50%,
+                transparent 55%,
+                transparent 100%
+            );
+            animation: shine 6s infinite;
+            opacity: 0.2;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .owner-info {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .owner-name {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .owner-name::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-red);
+            border-radius: 3px;
+        }
+
+        .owner-title {
+            color: var(--accent-red);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .owner-bio {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 76, 76, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--accent-red);
+            font-size: 18px;
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .contact-value a {
+            color: var(--accent-red);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-value a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 25px;
+            background: var(--accent-red);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background: var(--accent-red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 76, 76, 0.3);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                transform: rotate(0deg) translate(-50%, -50%);
+            }
+            100% {
+                transform: rotate(360deg) translate(-50%, -50%);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .owner-card {
+                flex-direction: column;
+            }
+
+            .owner-photo {
+                flex: 0 0 auto;
+                padding: 20px;
+            }
+
+            .owner-info {
+                padding: 30px;
+            }
+
+            .owner-name {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                margin-bottom: 30px;
+            }
+
+            .logo-container {
+                width: 70px;
+                height: 70px;
+            }
+
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .owner-info {
+                padding: 25px;
+            }
+
+            .owner-name {
+                font-size: 1.6rem;
+            }
+
+            .owner-bio {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="logo-link">
+                <div class="logo-container">
+                    <div class="logo">DRS</div>
+                </div>
+            </a>
+            <h1 class="title">About The Creator</h1>
+            <p class="subtitle">Meet the developer behind DRS AI</p>
+        </div>
+
+        <div class="owner-card">
+            <div class="owner-photo">
+                <div class="photo-frame">
+                    <img src="pic.png" alt="Sandesh Bhandari">
+                </div>
+            </div>
+            <div class="owner-info">
+                <h2 class="owner-name">Sandesh Bhandari</h2>
+                <p class="owner-title">AI Developer & Creator of DRS AI</p>
+                <p class="owner-bio">
+                    Hello! I'm Sandesh Bhandari, the creator of DRS AI.I'm 15 years old and I like to made this type of stuff. Contcact me for further information.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <div class="contact-label">Email</div>
+                            <div class="contact-value">
+                                <a href="mailto:bhandaryshandesh2@gmail.com">bhandaryshandesh2@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="contact-text">
+                            <div class="contact-label">Website</div>
+                            <div class="contact-value">
+                                <a href="index.html">DRS AI Assistant</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Back to DRS AI
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="google-adsense-account" content="ca-pub-8503168846467364">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8503168846467364" crossorigin="anonymous"></script>
+<meta name="google-site-verification" content="RbRS3y8OUZiEchfFPgVmUzC6p1BFt8crxDJiGNxv40s" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRS AI - Premium Plans</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --bg-dark: #121212;
+            --bg-darker: #0a0a0a;
+            --bg-container: #1e1e1e;
+            --accent-red: #ff4c4c;
+            --accent-red-dark: #e03c3c;
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --border-radius: 16px;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            background: var(--bg-darker);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 76, 76, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 76, 76, 0.05) 0%, transparent 20%);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: var(--bg-darker);
+            border: 3px solid var(--accent-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .logo-container::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--accent-red);
+            opacity: 0.1;
+            z-index: -1;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        .logo {
+            width: 70%;
+            height: 70%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-red), #ff1e1e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .app-title {
+            font-size: 2.2rem;
+            margin: 10px 0;
+            background: linear-gradient(to right, var(--text-primary), var(--accent-red));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .plans-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .plan-card {
+            background: var(--bg-container);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .plan-card.featured {
+            border: 2px solid var(--accent-red);
+        }
+
+        .plan-card.featured::before {
+            content: "POPULAR";
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--accent-red);
+            color: white;
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(45deg);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-red);
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            font-weight: normal;
+            color: var(--text-secondary);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .plan-features li i {
+            margin-right: 10px;
+            color: var(--accent-red);
+        }
+
+        .buy-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .buy-button:hover {
+            background: var(--accent-red-dark);
+            transform: translateY(-2px);
+        }
+
+        .buy-button:active {
+            transform: translateY(0);
+        }
+
+        .faq-section {
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--text-primary);
+        }
+
+        .faq-item {
+            background: var(--bg-container);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--accent-red);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        .credit {
+            text-align: center;
+            margin-top: 60px;
+            padding: 15px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .credit a {
+            color: var(--accent-red);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .credit a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .app-title {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .plans-container {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-card.featured::before {
+                top: 10px;
+                right: -25px;
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-container {
+                width: 70px;
+                height: 70px;
+            }
+
+            .app-title {
+                font-size: 1.6rem;
+            }
+
+            .plan-card {
+                padding: 20px;
+            }
+
+            .plan-price {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo">DRS</div>
+            </div>
+            <h1 class="app-title">DRS AI Premium Plans</h1>
+            <p class="subtitle">Unlock the full potential of DRS AI with our premium subscription plans</p>
+        </div>
+
+        <div class="plans-container">
+            <div class="plan-card">
+                <h3 class="plan-name">Basic</h3>
+                <div class="plan-price">$5<span>/month</span></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Standard response speed</li>
+                    <li><i class="fas fa-check"></i> Access to general knowledge</li>
+                    <li><i class="fas fa-check"></i> 20 messages per hour</li>
+                    <li><i class="fas fa-check"></i> Basic conversation support</li>
+                    <li><i class="fas fa-check"></i> Email support</li>
+                </ul>
+                <a href="#" class="buy-button">Get Started</a>
+            </div>
+
+            <div class="plan-card featured">
+                <h3 class="plan-name">Premium</h3>
+                <div class="plan-price">$11<span>/month</span></div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> <strong>Priority response speed</strong></li>
+                    <li><i class="fas fa-check"></i> Advanced knowledge access</li>
+                    <li><i class="fas fa-check"></i> Unlimited messages</li>
+                    <li><i class="fas fa-check"></i> Code execution support</li>
+                    <li><i class="fas fa-check"></i> File uploads & analysis</li>
+                    <li><i class="fas fa-check"></i> 24/7 priority support</li>
+                    <li><i class="fas fa-check"></i> Early access to new features</li>
+                </ul>
+                <a href="#" class="buy-button">Buy Now</a>
+            </div>
+
+            <div class="plan-card">
+                <h3 class="plan-name">Enterprise</h3>
+                <div class="plan-price">Custom</div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> All Premium features</li>
+                    <li><i class="fas fa-check"></i> Dedicated AI instance</li>
+                    <li><i class="fas fa-check"></i> API access</li>
+                    <li><i class="fas fa-check"></i> Custom integrations</li>
+                    <li><i class="fas fa-check"></i> White-label options</li>
+                    <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                    <li><i class="fas fa-check"></i> SLA guarantees</li>
+                </ul>
+                <a href="#" class="buy-button">Contact Sales</a>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What payment methods do you accept?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We accept all major Nepali payments and NMB bank payment.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I cancel my subscription anytime?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes, you can cancel your subscription at any time. Your access will continue until the end of your current billing period, and you won't be charged again.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is there a free trial available?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We currently offer a 0-day free trial for our Premium plan. You can not try all the premium features before committing to a paid subscription.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How does the Enterprise plan work?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Our Enterprise plan is customized for each organization's needs. Please contact our sales team to discuss your requirements and we'll create a tailored solution with pricing based on your usage and features needed.
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to DRS AI
+        </a>
+
+        <div class="credit">
+            Created by <a href="owner.html" target="_blank">Sandesh Bhandari</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ toggle functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // You can add payment processing logic here when needed
+            const buyButtons = document.querySelectorAll('.buy-button');
+            
+            buyButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // In a real implementation, this would redirect to a payment processor
+                    alert('Payment processing would be implemented here. Contact bhandaryshandesh2@gmail.com.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
